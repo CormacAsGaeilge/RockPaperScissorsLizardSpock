@@ -4,8 +4,8 @@
 using namespace std;
 
 bool isBitSet(int value, int position);
-void randomChoice(int& choice, int& pos, string& move);
-void setChoice(int& choice, int& pos, string& move);
+void randomChoice(int& choice, int& pos, string& move); //Used to select Computers move
+void setChoice(int& choice, int& pos, string& move); //used to set variables based on computer/player choice
 
 int main()
 {
@@ -16,14 +16,26 @@ int main()
 	//L		0	1	0	-	1	=01001	=  9		= 1
 	//Sp	1	0	1	0	-	=10100	= 20		= 0
 
+	//using isBitSet() function...
 	//check if both are the same			= draw
 	//check if resulting bit is positive	= win
 	//if not positive						= lose
 
-	int compScore = 0, comp = 0, compPos = 0, playerScore = 0, player = 0, playerPos = 0, playAgain = 1;
-	string compMove, playerMove;
-	bool result, playGame = true;
+	int compScore = 0, 
+		comp = 0, 
+		compPos = 0, 
+		playerScore = 0, 
+		player = 0, 
+		playerPos = 0, 
+		playAgain = 1;
+
+	string compMove,
+		playerMove;
+
+	bool result,
+		playGame = true;
 	
+	//Title of game plus basic explaination of rules
 	cout << "RockPaperScissorsLizardSpock!" << endl;
 	cout << "............................" << endl;
 	cout << "Spock smashes scissors and vaporizes rock;" << endl;
@@ -86,6 +98,8 @@ int main()
 	cout << "Player score : " << playerScore << endl;
 	if (compScore > playerScore)
 		cout << "Computer wins overall!!!" << endl;
+	else if (compScore == playerScore)
+		cout << "It was a draw Overall!!!" << endl;
 	else
 		cout << "Player wins Overall!!!" << endl;
 
