@@ -49,7 +49,7 @@ int main()
 		cout << "Computer score : "<< compScore << " Player score : " << playerScore << endl;
 		cout << "Computer - Enter your choice" << endl;
 		cout << "............................" << endl;
-		randomChoice(comp, compPos, compMove);
+		randomChoice(comp, compPos, compMove);					//Computer is assigned a random guess
 		cout << "Choice selected" << endl;
 		cout << "............................" << endl;
 
@@ -58,21 +58,20 @@ int main()
 		cout << "............................" << endl;
 		cout << "Player   - Enter your choice" << endl;
 		cout << "............................" << endl;
-		cin >> player;
+		cin >> player;											//Player Enters their guess
 		setChoice(player, playerPos, playerMove);
 		cout << "............................" << endl;
-
-		if (comp - player != 0){
+		cout << "Computer Chose: " << compMove << " and Player Chose: " << playerMove << endl; //Tell the user what the Computer chose
+		if (comp - player != 0){								//If the round is not a draw
 			result = isBitSet(player, compPos);
-			cout << "Computer Chose: " << compMove << " and Player Chose: " << playerMove << endl;
 			cout << "............................" << endl;
-			if (result)
+			if (result)											//If the player wins
 			{
 				cout << "Player wins!" << endl;
 				playerScore++;
 			}
 			else
-			{
+			{													//If the player loses
 				cout << "Computer wins!" << endl;
 				compScore++;
 			}
@@ -81,7 +80,6 @@ int main()
 		}
 		else
 		{
-			cout << "Computer Chose: " << compMove << " and Player Chose: " << playerMove << endl;
 			cout << "............................" << endl;
 			cout << "It's a draw!" << endl;
 			cout << "............................" << endl;
@@ -92,11 +90,11 @@ int main()
 		cout << "............................" << endl;
 		cin >> playGame;
 	}
-
+	//when user chooses to not continue playing
 	cout << "Final scores!" << endl;
 	cout << "Computer : " << compScore << endl;
 	cout << "Player score : " << playerScore << endl;
-	if (compScore > playerScore)
+	if (compScore > playerScore)					//compare player and computers overall score and output who wins and who loses
 		cout << "Computer wins overall!!!" << endl;
 	else if (compScore == playerScore)
 		cout << "It was a draw Overall!!!" << endl;
@@ -110,12 +108,13 @@ system("pause");
 
 void randomChoice(int& choice, int& pos, string& move)
 {
-	choice = rand() % 5 + 1;
-	setChoice(choice, pos, move);
+	choice = rand() % 5 + 1;				//random number between 1 and 5
+	setChoice(choice, pos, move);			//set the computer's variables based on the random number
 }
+
 void setChoice(int& choice, int& pos, string& move)
 {
-	switch (choice)
+	switch (choice)							//set move variables based on choice
 	{
 	case 1:
 		choice = 6;
@@ -149,7 +148,7 @@ void setChoice(int& choice, int& pos, string& move)
 	}
 }
 
-bool isBitSet(int value, int position)
+bool isBitSet(int value, int position)		//Check to see if move from one player is positive or negative in the value of the other players move
 {
 	int mask = 1 << position;
 	if ((mask & value) > 0)
